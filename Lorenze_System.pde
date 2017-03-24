@@ -29,14 +29,25 @@ void draw() {
   
   points.add(new PVector(x, y, z));
   
-  translate(width/2, height/2);
+  translate(0, 0, -80);
+  //translate(width/2, height/2);
   scale(5);
   stroke(255);
   noFill();
   
+  float hu = 0;
+  
   beginShape();
   for(PVector v : points) {
+    stroke(hu, 255, 255);
     vertex(v.x, v.y, v.z);
+    PVector offset = PVector.random3D();
+    v.add(offset);
+    offset.mult(0.1);
+    hu += 0.1;
+    if(hu > 255) {
+      hu = 0;
+    }
   }
   endShape();
   point(x, y, z);
